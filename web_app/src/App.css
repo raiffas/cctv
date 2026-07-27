@@ -74,10 +74,17 @@ button {
 }
 
 /* ORGANIZATION */
-.vertical-stack {
+.right-vertical-stack {
   display: flex;
   flex-direction: column; /* Forces vertical stacking */
   align-items: flex-end;  /* Right-aligns children */
+  gap: 0x;              /* Adds spacing between items */
+}
+
+.left-vertical-stack {
+  display: flex;
+  flex-direction: column; /* Forces vertical stacking */
+  align-items: flex-start;  /* Right-aligns children */
   gap: 0x;              /* Adds spacing between items */
 }
 
