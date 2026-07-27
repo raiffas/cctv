@@ -1,4 +1,4 @@
-:root {
+/* :root {
   --text: #6b6375;
   --text-h: #08060d;
   --bg: #fff;
@@ -59,7 +59,6 @@ body {
   max-width: 100%;
   margin: 0 auto;
   text-align: center;
-  border-inline: 1px solid var(--border);
   min-height: 100svh;
   display: flex;
   flex-direction: column;
@@ -108,4 +107,23 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
+} */
+
+body {
+  background-color: #ffde59;
+  
+  /* Sets the image source */
+  background-image: url('assets/images/ribbon.png');
+
+    /* Centers the image horizontally and vertically */
+  background-position: center; 
+  
+  /* Prevents the image from repeating like a tile grid */
+  background-repeat: no-repeat; 
+  
+  /* Forces the image to scale and cover the entire screen */
+  background-size: cover; 
+  
+  /* Optional: Keeps the background fixed in place while scrolling */
+  background-attachment: fixed; 
 }

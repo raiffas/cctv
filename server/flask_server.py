@@ -1,4 +1,5 @@
-from flask import Flask, render_template, Response
+from flask import Flask, render_template, Response, jsonify
+from flask_cors import CORS
 from Camera import Camera
 import dotenv
 import os
@@ -8,6 +9,7 @@ load_dotenv() # read vars from .env file
 STREAM_IP = os.getenv('STREAM_IP')
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/')
 def index():
@@ -20,10 +22,15 @@ def gen(camera):
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 # This route returns the streaming response
+#TODO this should be an API call 
 @app.route('/video-feed')
 def video_feed():
     return Response(gen(Camera()), 
                     mimetype='multipart/x-mixed-replace; boundary=frame') 
+
+@app.route('/hello', methods=['GET'])
+def hello():
+    return jsonify({"message": "hello world"})
 
 
 if __name__ == '__main__':
