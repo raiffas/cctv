@@ -37,7 +37,7 @@ function VideoPlayer( {setShowLandingPage} ) {
   useEffect( () => {
     (async function() {
       try {
-        const res = await fetch('http://laptop.elver-mimosa.ts.net:5000/health');
+        const res = await fetch('https://laptop.elver-mimosa.ts.net:5000/health');
         if (res.ok) {
           setServerAuth(true);
           setLoading(current => current === false ? false : true);
@@ -56,7 +56,7 @@ function VideoPlayer( {setShowLandingPage} ) {
             <div className='left-vertical-stack'>
               <div className='video-stream'>
                   {loading ? (<img src={oscarImg} /> ) : null}
-                  {serverAuth ? ( <img src='http://laptop.elver-mimosa.ts.net:5000/video-feed' onLoad={() => setLoading(false)}/> ) : <video src={oscarVideo} autoPlay loop/> }
+                  {serverAuth ? ( <img src='https://laptop.elver-mimosa.ts.net:5000/video-feed' onLoad={() => setLoading(false)}/> ) : <video src={oscarVideo} autoPlay loop/> }
               </div>
               <div className='button-container'>
                 <button className="play" onClick={ () => { setShowLandingPage(true) } }>← RETURN HOME</button>
