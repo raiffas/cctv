@@ -32,7 +32,7 @@ button {
 
 /* Styles applied when mouse hovers over the button */
 .play:hover {
-  color: #ff66c4 /* New text color on hover */
+  color: white/* New text color on hover */
 }
 
 .play {
@@ -40,7 +40,7 @@ button {
   position: relative; /* required for left/top offsets below to take effect */
   left: -60px; /* negative = left, positive = right; tweak to line up */
   top: 0px; /* negative = up, positive = down; tweak to line up */
-  color: white
+  color: #ff66c4 
 }
 
 .pulse-text {

@@ -32,6 +32,10 @@ def video_feed():
 def hello():
     return jsonify({"message": "hello world"})
 
+@app.route('/health', methods=['GET'])
+def verify_client():
+    return "healthy client", 200
+
 
 if __name__ == '__main__':
     app.run(host = STREAM_IP, debug=True)

@@ -79,11 +79,13 @@ class BaseCamera(object):
         return BaseCamera.frame
 
     @staticmethod
+    #this captures
     def frames():
         """"Generator that returns frames from the camera."""
         raise RuntimeError('Must be implemented by subclasses.')
 
     @classmethod
+    #this serves captured frames from generator
     def _thread(cls):
         """Camera background thread."""
         print('Starting camera thread.')

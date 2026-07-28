@@ -7,15 +7,8 @@ import './App.css'
 
 import oscarVideo from './assets/videos/oscar2.mp4'
 
-function App() {
-  const [count, setCount] = useState(0)
-  const [showLandingPage, setShowLandingPage] = useState(true)
-
-  // TODO: maybe consider API not serving imgs so we can use a fetch
-  return (
-    <>
-      { showLandingPage ? (
-           <div className="container">
+function LandingPage( {setShowLandingPage} ) {
+  return    <div className="container">
             <div className="right-vertical-stack">
               <div className="horizontal-stack">
                 <img src={oscarImg} className='oscar' ></img>
@@ -34,20 +27,52 @@ function App() {
                 </button>
               </div>
             </div>
-          </div>) 
-        : 
-          <div className='container'>
+          </div>
+}
+
+function VideoPlayer( {setShowLandingPage} ) {
+    const [serverAuth, setServerAuth] = useState(false)
+    const [loading, setLoading] = useState()
+
+  useEffect( () => {
+    (async function() {
+      try {
+        const res = await fetch('http://laptop.elver-mimosa.ts.net:5000/health');
+        if (res.ok) {
+          setServerAuth(true);
+          setLoading(current => current === false ? false : true);
+        } else {
+          throw new Error("Server did not respond")
+        }
+      } catch (error) {
+          console.error(error)
+          setServerAuth(false)
+      }
+
+    })();
+  }, [setServerAuth])
+
+  return  <div className='container'>
             <div className='left-vertical-stack'>
               <div className='video-stream'>
-                  {/* <img src='http://laptop.elver-mimosa.ts.net:5000/video-feed'/> */}
-                  <video src={oscarVideo} />
+                  {loading ? (<img src={oscarImg} /> ) : null}
+                  {serverAuth ? ( <img src='http://laptop.elver-mimosa.ts.net:5000/video-feed' onLoad={() => setLoading(false)}/> ) : <video src={oscarVideo} autoPlay loop/> }
               </div>
               <div className='button-container'>
                 <button className="play" onClick={ () => { setShowLandingPage(true) } }>← RETURN HOME</button>
               </div>
             </div>
           </div>
-      }
+}
+
+function App() {
+  const [showLandingPage, setShowLandingPage] = useState(true)
+
+
+  // TODO: maybe consider API not serving imgs so we can use a fetch
+  return (
+    <>
+      { showLandingPage ?  <LandingPage setShowLandingPage={setShowLandingPage} />  : <VideoPlayer setShowLandingPage={setShowLandingPage}  />  }
     </>
   )
 }
