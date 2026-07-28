@@ -12,6 +12,9 @@ permissions:
 
 jobs:
   build:
+    defaults:
+      run:
+        working-directory: ./web_app
     runs-on: ubuntu-latest
     environment:
       name: github-pages
