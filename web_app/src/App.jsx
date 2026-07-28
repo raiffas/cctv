@@ -33,11 +33,13 @@ function LandingPage( {setShowLandingPage} ) {
 function VideoPlayer( {setShowLandingPage} ) {
     const [serverAuth, setServerAuth] = useState(false)
     const [loading, setLoading] = useState()
+    const health_endpoint = import.meta.env.HEALTH_PATH
+    const video_feed = import.meta.env.VIDEO_PATH
 
   useEffect( () => {
     (async function() {
       try {
-        const res = await fetch('http://laptop.elver-mimosa.ts.net:5000/health');
+        const res = await fetch(health_endpoint);
         if (res.ok) {
           setServerAuth(true);
           setLoading(current => current === false ? false : true);
@@ -56,7 +58,7 @@ function VideoPlayer( {setShowLandingPage} ) {
             <div className='left-vertical-stack'>
               <div className='video-stream'>
                   {loading ? (<img src={oscarImg} /> ) : null}
-                  {serverAuth ? ( <img src='http://laptop.elver-mimosa.ts.net:5000/video-feed' onLoad={() => setLoading(false)}/> ) : <video src={oscarVideo} autoPlay loop/> }
+                  {serverAuth ? ( <img src={video_feed} onLoad={() => setLoading(false)}/> ) : <video src={oscarVideo} autoPlay loop/> }
               </div>
               <div className='button-container'>
                 <button className="play" onClick={ () => { setShowLandingPage(true) } }>← RETURN HOME</button>
