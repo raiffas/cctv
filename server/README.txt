@@ -1,1 +1,0 @@
-Implemented server/client security following this article: http://medium.com/@0xbatot/implementing-secure-real-time-communication-in-python-30fdbee8c447
