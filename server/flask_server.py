@@ -9,7 +9,7 @@ load_dotenv() # read vars from .env file
 STREAM_IP = os.getenv('STREAM_IP')
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=[ "http://localhost:5173","https://raiffas.github.io"])
 
 @app.route('/')
 def index():
@@ -38,4 +38,4 @@ def verify_client():
 
 
 if __name__ == '__main__':
-    app.run(host = STREAM_IP, debug=True, ssl_context='adhoc')
+    app.run(host = STREAM_IP, debug=True)

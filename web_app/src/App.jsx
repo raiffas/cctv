@@ -37,7 +37,7 @@ function VideoPlayer( {setShowLandingPage} ) {
   useEffect( () => {
     (async function() {
       try {
-        const res = await fetch('https://laptop.elver-mimosa.ts.net:5000/health');
+        const res = await fetch('http://laptop.elver-mimosa.ts.net:5000/health');
         if (res.ok) {
           setServerAuth(true);
           setLoading(current => current === false ? false : true);
@@ -56,7 +56,7 @@ function VideoPlayer( {setShowLandingPage} ) {
             <div className='left-vertical-stack'>
               <div className='video-stream'>
                   {loading ? (<img src={oscarImg} /> ) : null}
-                  {serverAuth ? ( <img src='https://laptop.elver-mimosa.ts.net:5000/video-feed' onLoad={() => setLoading(false)}/> ) : <video src={oscarVideo} autoPlay loop/> }
+                  {serverAuth ? ( <img src='http://laptop.elver-mimosa.ts.net:5000/video-feed' onLoad={() => setLoading(false)}/> ) : <video src={oscarVideo} autoPlay loop/> }
               </div>
               <div className='button-container'>
                 <button className="play" onClick={ () => { setShowLandingPage(true) } }>← RETURN HOME</button>
@@ -68,8 +68,6 @@ function VideoPlayer( {setShowLandingPage} ) {
 function App() {
   const [showLandingPage, setShowLandingPage] = useState(true)
 
-
-  // TODO: maybe consider API not serving imgs so we can use a fetch
   return (
     <>
       { showLandingPage ?  <LandingPage setShowLandingPage={setShowLandingPage} />  : <VideoPlayer setShowLandingPage={setShowLandingPage}  />  }
