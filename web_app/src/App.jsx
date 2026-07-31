@@ -47,12 +47,16 @@ function ServerDownPage( {setShowLandingPage} ) {
         </div>
 }
 
-function VideoPlayer( {setShowLandingPage, loading, serverAuth} ) {
+function VideoPlayer( {setShowLandingPage} ) {
+  const [loading, setLoading] = useState()
+
   return <div className='container'>
             <div className='left-vertical-stack'>
               <div className='video-stream'>
-                  {loading ? (<img src={oscarImg} /> ) : null}
-                  {serverAuth ? ( <img src='https://laptop.elver-mimosa.ts.net:5000/video-feed' onLoad={() => setLoading(false)}/> ) : <video src={oscarVideo} autoPlay loop/>}
+                  {/* {loading ? (<img src={oscarImg} /> ) : null} */}
+
+                  {loading ? <p>it is loading</p> : null}
+                  <img src='https://laptop.elver-mimosa.ts.net:5000/video-feed' onLoad={() => setLoading(false)}/> 
               </div>
               <div className='button-container'>
                 <button className="play" onClick={ () => { setShowLandingPage(true) } }>← RETURN HOME</button>
@@ -62,40 +66,45 @@ function VideoPlayer( {setShowLandingPage, loading, serverAuth} ) {
 
 }
 
-function VideoPage( {setShowLandingPage} ) {
-    const [serverAuth, setServerAuth] = useState(false)
-    const [loading, setLoading] = useState()
-    
-  useEffect( () => {
-    (async function() {
-      try {
-        const res = await fetch('https://laptop.elver-mimosa.ts.net:5000/health');
-        if (res.ok) {
-          setServerAuth(true);
-          setLoading(current => current === false ? false : true);
-        } else {
-          throw new Error("Server did not respond")
-        }
-      } catch (error) {
-          console.error(error)
-          setServerAuth(false)
-      }
-
-    })();
-  }, [setServerAuth])
-
-  return ( 
+function VideoPage( {setShowLandingPage, serverAuth} ) {
+  return (
     <>
     { serverAuth ? <VideoPlayer setShowLandingPage={setShowLandingPage} /> : <ServerDownPage setShowLandingPage={setShowLandingPage} /> }
+
     </> )
 }
 
 function App() {
   const [showLandingPage, setShowLandingPage] = useState(true)
+      const [serverAuth, setServerAuth] = useState(false)
+    
+    
+  useEffect( () => {
+    
+    (async function() {
+      try {
+        console.log("use effect called cuz setShowLandingPage changed")
+        const res = await fetch('https://laptop.elver-mimosa.ts.net:5000/health');
+        if (res.ok) {
+          setServerAuth(true);
+          //setLoading(current => current === false ? false : true);
+        } else {
+          throw new Error("Server did not respond")
+        }
+      } catch (error) {
+          //console.log("server did not respond, serverauth should be false")
+         // console.error(error)
+          setServerAuth(false)
+         // console.log(serverAuth)
+      }
+
+    })();
+  }, [showLandingPage])
+
 
   return (
     <>
-      { showLandingPage ?  <LandingPage setShowLandingPage={setShowLandingPage} />  : <VideoPage setShowLandingPage={setShowLandingPage}  />  }
+      { showLandingPage ?  <LandingPage setShowLandingPage={setShowLandingPage} />  : <VideoPage setShowLandingPage={setShowLandingPage} serverAuth={serverAuth} />  }
     </>
   )
 }
