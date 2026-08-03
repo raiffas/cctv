@@ -32,7 +32,8 @@ function LandingPage( {setShowLandingPage} ) {
 }
 
 function ServerDownPage( {setShowLandingPage} ) {
-  return <div className="center-vertical-stack">
+  return <div className='container'>
+          <div className="center-vertical-stack">
             <div className="text-container" >
               <h1 className="double-text" id="page-header" data-text="uh oh">uh oh</h1>
             </div>
@@ -43,7 +44,7 @@ function ServerDownPage( {setShowLandingPage} ) {
             <div className='button-container'>
               <button className="play" onClick={ () => { setShowLandingPage(true) } }>← RETURN HOME</button>
             </div>
-
+          </div>
         </div>
 }
 
