@@ -56,7 +56,7 @@ function VideoPlayer( {setShowLandingPage} ) {
                   {/* {loading ? (<img src={oscarImg} /> ) : null} */}
 
                   {loading ? <p>it is loading</p> : null}
-                  <img src='https://laptop.elver-mimosa.ts.net:5000/video-feed' onLoad={() => setLoading(false)}/> 
+                  <img src='https://pierce-ucf.elver-mimosa.ts.net:5000/video-feed' onLoad={() => setLoading(false)}/> 
               </div>
               <div className='button-container'>
                 <button className="play" onClick={ () => { setShowLandingPage(true) } }>← RETURN HOME</button>
@@ -84,7 +84,7 @@ function App() {
     (async function() {
       try {
         console.log("use effect called cuz setShowLandingPage changed")
-        const res = await fetch('https://laptop.elver-mimosa.ts.net:5000/health');
+        const res = await fetch('https://pierce-ucf.elver-mimosa.ts.net:5000/health');
         if (res.ok) {
           setServerAuth(true);
           //setLoading(current => current === false ? false : true);

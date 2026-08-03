@@ -38,5 +38,5 @@ def verify_client():
 
 
 if __name__ == '__main__':
-    context = ('C:\\Users\\raiff\\certs\\laptop.elver-mimosa.ts.net.crt', 'C:\\Users\\raiff\\certs\\laptop.elver-mimosa.ts.net.key')
-    app.run(host = "laptop.elver-mimosa.ts.net", debug=True, ssl_context=context)
+    context = ('C:\\Users\\pi047867\\raiffas\\certs\\pierce-ucf.elver-mimosa.ts.net.crt', 'C:\\Users\\pi047867\\raiffas\\certs\\pierce-ucf.elver-mimosa.ts.net.key')
+    app.run(host = "pierce-ucf.elver-mimosa.ts.net", debug=True, ssl_context=context)
